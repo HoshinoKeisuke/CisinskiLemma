@@ -1,5 +1,6 @@
-main.aux
+*.aux
 *.vim
 *.blg
 *.synctex.gz
 *.synctex(busy)
+.DS_Store
