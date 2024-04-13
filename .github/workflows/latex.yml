@@ -26,4 +26,4 @@ jobs:
         run: |
           git add --all
           git commit -m "LaTeX compilation"
-          git push -u
+          git push origin pdf
