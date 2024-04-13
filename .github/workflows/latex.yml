@@ -15,10 +15,10 @@ jobs:
         run: |
           git config user.name HoshinoKeisuke
           git config user.email catkekke18635@gmail.com
-          git checkout pdf
+          git checkout pdf2
           git merge main
       - name: Compile LaTeX document
-        uses: xu-cheng/latex-action@v3
+        uses: xu-cheng/latex-action@v2
         with:
           root_file:
             main.tex
@@ -26,4 +26,4 @@ jobs:
         run: |
           git add --all
           git commit -m "LaTeX compilation"
-          git push -u
+          git push --force origin pdf2
