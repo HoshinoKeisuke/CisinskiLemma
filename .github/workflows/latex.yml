@@ -24,6 +24,6 @@ jobs:
             main.tex
       - name: Push PDF file
         run: |
-          git add .
+          git add --all
           git commit -m "LaTeX compilation"
           git push origin pdf2
