@@ -4,8 +4,8 @@
 
 \begin{document}
 \maketitle
-\cite{Cis19}  
-The main objective is \Cref{prop:main}.
+See \cite{Cis19} and the \href{https://mathoverflow.net/questions/467753/on-lemma-5-5-16-of-cisinskis-higher-categories-and-homotopical-algebra}{mathoverflow}.
+The main objective is \Cref{prop:main}, which includes \cite[Lemma5.5.16]{Cis19}.
 \begin{notation}
 	We employ the following notations. 
 	\begin{itemize}
@@ -81,7 +81,6 @@ The main objective is \Cref{prop:main}.
 			We write $\omega$ for the least infinite ordinal seen as a category by its order.
 		\item %
 			We regard the horn $\Lambda^2_2$ as a subcategory of $\Delta^2$.
-		\item %
 		\qedhere %
 	\end{itemize}
 \end{notation}
@@ -136,7 +135,7 @@ The main objective is \Cref{prop:main}.
 	which is equivalent to $iv)$.
 	$v)$ is also equivalent to them in the same way.
 \end{proof}
-\begin{corollary}[Lemma 5.5.6 of \cite{Cis19}]
+\begin{corollary}[{\cite[Lemma 5.5.6]{Cis19}}]
 	\label{cor:biTrivfib}
 	A morphism $q$ in $\bisSet$ is a trivial fibration
 	if and only if
@@ -144,7 +143,7 @@ The main objective is \Cref{prop:main}.
 	for each monomorphism $i$ in $\sSet$.
 \end{corollary}
 \begin{proof}
-	$\I_\mono\boxtimesL\I_\mono$ is a cellular model for $\bisSet$ \comment{citation},
+	$\I_\mono\boxtimesL\I_\mono$ is a cellular model for $\bisSet$ (see \cite[Example 1.3.4 and 2.4.5]{Cis19}),
 	and this is a direct consequence of \Cref{lem:rIbtJ}, where both $\I$ and $\J$ are $\I_\mono$.
 \end{proof}
 \begin{lemma}
@@ -152,7 +151,7 @@ The main objective is \Cref{prop:main}.
 	$\dom\colon(\sSet/A)_\co\arr(\sSet)_\co$ preserves and lifts trivial fibrations and naive fibrations.
 \end{lemma}
 \begin{proof}
-	Observe that $\dom$ preserves and lifts both monomorphisms and anodyne extensions.
+	Recall that $\dom$ preserves and lifts both monomorphisms and anodyne extensions.
 
 	Let $f\colon S\arr T$ be a morphism in $\sSet/A$. We show that $f$ is a trivial/naive fibration if and only if $\dom(f)$ is a trivial/naive fibration.
 	The if part is easily checked by considering that $\dom$ preserves monomorphisms/anodyne extensions.
@@ -242,26 +241,26 @@ The main objective is \Cref{prop:main}.
 \section{Insights from Reedy category theory}
 \begin{observation}
 	\label{obs:Leibniz}
-	$\ra$ can be seen as a (boolean) lattice, and there are
+	$\ra$ can be seen as a lattice so that there are
 	the meet $\land\colon\Box\arr\ra$ and the join $\lor\colon\Box\arr\ra$.
 	Given a category $\one{C}$ with pushout and pullback,
 	we obtain $L_\land\colon\one{C}^\Box\arr\one{C}^\ra$ as the right Kan extension of the meet $\land$,
 	while we have $L_\lor\colon\one{C}^\Box\arr\one{C}^\ra$ as the left Kan extension of the join $\lor$.
 
 	On the other hand, suppose we are given a functor $\otimes\colon\one{A}\times\one{B}\arr\one{C}$.
-	The currying of the composite
+	Consider the composite
 	\[
 		\ra\times\ra\times\one{A}^\ra\times\one{B}^\ra
 		\arr"\text{evaluation}"[][6]
 		\one{A}\times\one{B}
 		\arr"\otimes"
-		\one{C}
+		\one{C}\text{,}
 	\]
-	gives a functor $\bar\otimes\colon\one{A}^\ra\times\one{B}^\ra\arr\one{C}^\Box$,
-	where the first one is the canonical evaluation functor that sends $(i,j,X,Y)$ to $(X(i),Y(j))$.
+	where the former is the canonical evaluation functor that sends $(i,j,X,Y)$ to $(X(i),Y(j))$.
+	The currying of this composite gives a functor $\bar\otimes\colon\one{A}^\ra\times\one{B}^\ra\arr\one{C}^\Box$.
 
 	Now we have two functors $L_\land\circ\bar\otimes$ and $L_\lor\circ\bar\otimes$ of the form $\one{A}^\ra\times\one{B}^\ra\arr\one{C}^\ra$.
-	The first one is the \textit{pullback product} of $\otimes$, while the secound one is the \textit{pushout product} or the \textit{Leibniz product} of $\otimes$.
+	The first one is the \textit{pullback product} of $\otimes$, while the second one is the \textit{pushout product} or the \textit{Leibniz product} of $\otimes$.
 \end{observation}
 \begin{definition}
 	\label{defn:SatMono}
@@ -271,17 +270,17 @@ The main objective is \Cref{prop:main}.
 	the colimit of $F$ is in $S$;
 	\begin{itemize}
 		\item %
-			The image of $F$ is in $S$.
-		\item %
 			$\dI$ is a discrete category, or either of
 			$\omega^\op$ or $\Lambda^2_2$.
 		\item %
 			If $u\colon i\arr j$ in $\dI$ is of the form $n+1\arr n$ in $\omega^\op$ or $1\arr 2$ in $\Lambda^2_2$,
 			then $F(u)$ is a monomorphism.
+		\item %
+			The image of $F$ is in $S$.
 		\qedhere %
 	\end{itemize}
 \end{definition}
-\begin{fact}[Corollary 1.3.10 of \cite{Cis19}]
+\begin{fact}[{\cite[Corollary 1.3.10]{Cis19}}]
 	\label{fact:SatMono}
 	A class of simplicial sets contains all simplicial sets
 	if it is satureated by monomorphisms and contains representables.
@@ -335,7 +334,111 @@ The main objective is \Cref{prop:main}.
 	The limit of a Reedy trivial fibration is a trivial fibration.
 \end{proposition}
 \begin{proof}
-	\comment{ongoing, citation}
+	Let us write $\Delta_\dI\colon\one{C}\arr\left[\dI,\one{C}\right]$
+	for the diagonal functor, and write $\lim_\dI$ for its right adjoint.
+	Suppose that we are given a cofibration $f\colon K\arr[tail]L$ in $\one{C}$
+	and a Reedy trivial fibration $\alpha\colon F\arr G$.
+	We show $f\pitchfork \lim_\dI(\alpha)$, which is equivalent to $\Delta_\dI(f)\pitchfork \alpha$ in $\left[\dI,\one{C}\right]$.
+	To this end,
+	let $(u,v)\colon\Delta_\dI(f)\arr\alpha$ be a morphism in $\left[\dI,\one{C}\right]^\ra$.
+	It suffices to find the diagonal filler $k\colon\Delta_\dI(L)\arr F$ for this square.
+	\begin{itemize}
+		\item % discrete caty (product)
+			When $\dI$ is a discrete category,
+			take diagonal fillers $k_i\colon L\arr G(i)$ for
+			each squares $(u_i,v_i)\colon f\arr\alpha_i$.
+			Such fillers exist because $\alpha_i$ is a trivial fibration for each $i\in\dI$.
+		\item % cocomposition
+			Suppose $\dI=\omega^\op$.
+			We construct the diagonal filler $(k_n)_{n\geq 0}$ by induction on $n$.
+			\begin{itemize}
+				\item[(n=0)] %
+					$k_0$ is the diagonal filler for the square $(u_0,v_0)\colon f\arr\alpha_0$.
+				\item[(n>0)] %
+					Suppose we have constructed $k_{n-1}$ that fits into the following commutative diagram.
+					\[
+						\begin{tikzcd}
+							K
+							\ar[r,"u_n"]
+							\ar[d,tail,"f"']
+								&
+								F(n)
+								\ar[r]
+								\ar[d]
+									&
+									F(n-1)
+									\ar[d,"\alpha_{n-1}"]
+							\\
+							L
+							\ar[rru,crossing over,"k_{n-1}"{description,near end}]
+							\ar[r,"v_n"']
+								&
+								G(n)
+								\ar[r]
+									&
+									G(n-1)
+						\end{tikzcd}
+					\]
+					Since the square on the right is sent by $L_\land$ to a trivial fibration,
+					we have another square whose right side is a tribial fibration;
+					\[
+						\begin{tikzcd}
+							K
+							\ar[r,"u_n"]
+							\ar[d,"f"',tail]
+								&
+								F(n)
+								\ar[d]
+							\\
+							K
+							\ar[r,"\bar{k}_{n-1}"']
+								&
+								\cdot
+						\end{tikzcd}
+					\]
+					where the bottom side is the morphism induced from $k_{n-1}$ and $v_n$ by the universality of the pullback defining the right side.
+					We define $k_n$ as a filler for this square.
+			\end{itemize}
+		\item % pullback
+			Suppose $\dI=\Lambda^2_2$. Define $(k_x)_{x=0,1,2}$ as follows.
+			\begin{itemize}
+				\item %
+					$k_0$ is the filler for $(u_0,v_0)\colon f \arr \alpha_0$,
+					and define $k_2$ as the composite
+					\[
+						L\arr"k_0"
+						F(0)\arr F(2)
+					\]
+					where the latter is the image under $F$ of $0\arr 2$.
+				\item %
+					Now we have the following commutative diagram.
+					\[
+						\begin{tikzcd}
+							K
+							\ar[r,"u_1"]
+							\ar[d,tail,"f"']
+								&
+								F(1)
+								\ar[r]
+								\ar[d]
+									&
+									F(2)
+									\ar[d,"\alpha_{2}"]
+							\\
+							L
+							\ar[rru,crossing over,"k_{2}"{description,near end}]
+							\ar[r,"v_1"']
+								&
+								G(1)
+								\ar[r]
+									&
+									G(2)
+						\end{tikzcd}
+					\]
+					We define $k_1$ in the same way as the definition of $k_n$ above for $\dI=\omega^\op$.
+				\qedhere
+			\end{itemize}
+	\end{itemize}
 \end{proof}
 \section{The main proposition}
 \begin{definition}
@@ -357,7 +460,7 @@ The main objective is \Cref{prop:main}.
 	\]
 	where $((-)\lollipop {\Delta^n})^{-1}$ means the inverse image of the function on morphisms
 	induced from the functor $(-)\lollipop {\Delta^n}\colon\bisSet\arr\sSet$.
-	Since $((-)\lollipop {\Delta^n})^{-1}$ preserves colimits and saturated classes are closed under joins,
+	Since $(-)\lollipop {\Delta^n}$ preserves colimits and saturated classes are closed under unions,
 	this class is saturated.
 	Therefore, it suffices to show that morphisms in $\I_\lft\boxtimesL\I_\mono$ are levelwise left anodyne extensions.
 
@@ -388,7 +491,7 @@ The main objective is \Cref{prop:main}.
 					B\times D_n
 		\end{tikzcd}
 	\]
-	The two morphisms named $i\times\id$ are both left anodyne extensions since left anodyne extensions are closed under finite product \comment{citation}.
+	The two morphisms named $i\times\id$ are both left anodyne extensions since left anodyne extensions are closed under finite product (\cite[Proposition 3.4.3]{Cis19}).
 	Since $(-)\lollipop\Delta^n$ preserves pushouts, the marked square is a pushout square, and hence $x$ is also a left anodyne extension.
 	Moreover, since the outer square comprises monomorphisms, all morphisms in this diagram are monomorphisms \comment{citation}.
 	Therefore, the resulting morphism $(i\boxtimesL j)\lollipop\Delta^n$ is a initial monomorphism, which is a left anodyne extension.
