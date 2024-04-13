@@ -1,0 +1,200 @@
+\documentclass[a4paper,  dvipsnames, 11pt]{amsart}
+\usepackage{preamble}
+\vspace{10ex}
+
+\begin{document}
+\maketitle
+\begin{notation}
+	We employ the following notations.
+	\begin{itemize}
+		\item %
+			Given any category $\one{C}$ and two objects $A,B\in\one{C}$,
+			we write $\one{C}(A,B)$ for the homset.
+		\item %
+			$\Simp$ is the category of simplices.
+			We write $\Delta^n$ for the $n$-simplex, which is also seen as a category.
+		\item %
+			We write $\one{C}^\ra$ for the arrow category of $\one{C}$.
+			We write $\Box$ for $\ra\times\ra$.
+		\item %
+			$\ra$ can be seen as a (boolean) lattice, and there are
+			the meet $\land\colon\Box\arr\ra$ and the join $\lor\colon\Box\arr\ra$.
+			Given a category $\one{C}$ with pushout and pullback,
+			we obtain $L_\land\colon\one{C}^\Box\arr\one{C}^\ra$ as the right Kan extension of the meet $\land$,
+			while we have $L_\lor\colon\one{C}^\Box\arr\one{C}^\ra$ as the left Kan extension of the join $\lor$.
+		\item %
+			We write $\Set$ for the category of sets.
+		\item %
+			$\sSet$ is the category of simplicial sets; i.e., $\sSet=\left[\Simp^\op,\Set\right]$.
+		\item %
+			$\bisSet$ is the category of bisimplicial sets; i.e.,  $\bisSet=\left[\Simp^\op\times\Simp^\op,\Set\right]$
+		\item %
+			For each small category $\dgm{A}$, we write $\yo\colon\dgm{A}\arr\left[\dgm{A}^\op,\Set\right]$ for the yoneda embedding.
+		\item %
+			We write $-\boxtimes-\colon\sSet\times\sSet\arr\bisSet$ for the nerve functor of $\yo\times\yo\colon\Simp^\op\times\Simp^\op\arr\sSet\times\sSet$.
+		\item %
+			There are functors $-\rollipop-\colon\bisSet\times\sSet^\op\arr\sSet$ and $-\lollipop-\colon\sSet^\op\times\bisSet\arr\sSet$
+			such that there exists the following family of bijections natural in $A,B\in\sSet^\op$ and $X\in\bisSet$.
+			\[
+				\bisSet(A\boxtimes B,X)
+				\cong
+				\sSet(A,X\lollipop B)
+				\cong
+				\sSet(B,A\rollipop X)
+			\]
+		\item %
+			We write $-\boxtimesL-\colon\sSet^\ra\times\sSet^\ra\arr\bisSet^\ra$ for the Leibniz join for $\boxtimes$.
+			We write
+			$-\rollipopL-\colon\sSet^{\ra,\op}\times\bisSet^\ra\arr\sSet^\ra$
+			and
+			$-\lollipopL-\colon\bisSet^\ra\times\sSet^{\ra,\op}\arr\sSet^\ra$
+			for the Leibniz meets for $\rollipop$ and $\lollipop$ respectively.
+			Here, we identify $\sSet^{\ra,\op}$ with $\sSet^{\op,\ra}$.
+		\item %
+			Let $i$ and $k$ be morphisms.
+			We write $i\pitchfork k$ if $i$ has left lifting property to $k$, or equivalently,
+			$k$ has right lifting property to $i$.
+		\item
+			Given a class of morphisms $\mathscr{I}$,
+			we write $\ell(\mathscr{I})$ for the class of morphisms that have left lifting property to those in $\mathscr{I}$.
+			Dually, we write $r(\mathscr{I})$ for the class of morphisms that have right lifting property to those in $\mathscr{I}$.
+		\item %
+			Given two classes of morphisms $\I$ and $\K$ in $\sSet$,
+			we obtain a class of morphisms $\I\boxtimesL\K=\{ i\boxtimesL k\,|\,i\in\I,\ k\in\K \}$.
+		\item %
+			We write $\I_\mono$ for the canonical cellular model for $\sSet$; i.e., the set of boundary inclusions.
+		\item %
+			We write $\I_\lft$ for the generating left anodyne extensions.
+		\item %
+			We write $\Lambda$ for the Leibniz join $\I_\lft\boxtimesL\I_\mono$,
+			and we write $\I_\lftbi$ for $\I_\lft\boxtimesL\I_\mono\cup\I_\mono\boxtimesL\I_\lft$.
+			$\I_\lftbi$ is the generator for left bi-anodyne extensions.
+		\item %
+			We say a morphism $i$ in $\bisSet$ 
+			is a \emph{levelwise left anodyne extension} if
+			$i\lollipop \Delta^n$ is a left anodyne extension for each $n\geq 0$.
+		\item %
+			For each simplicial set $A$,
+			we write $(\sSet/A)_\co$ for the slice category equipped with the covariant model structure,
+			while for each bisimplicial set $X$,
+			we write $(\bisSet/X)_\co$ for the slice category equipped with the bicovariant model structure.
+		\item %
+			We write $\omega$ for the least infinite ordinal seen as a category by its order.
+		\item %
+			We regard the horn $\Lambda^2_2$ as a subcategory of $\Delta^2$.
+		\item %
+		\qedhere %
+	\end{itemize}
+\end{notation}
+\begin{lemma}
+	\label{lem:pitchfork}
+	For each morphisms $i,j$ in $\sSet$ and a morphism $h$ in $\bisSet$, the following are equivalent.
+	\begin{itemize}
+		\item %
+			$i\boxtimesL j\pitchfork h$
+		\item %
+			$i\pitchfork h\lollipopL j$
+		\item %
+			$j\pitchfork i\rollipopL h$
+	\end{itemize}
+\end{lemma}
+\begin{lemma}
+	Suppose we are given two small classes $\I$ and $\I'$ of morphisms in $\sSet$, and a morphism $f$ in $\bisSet$.
+	The following are equivalent.
+	\begin{enumerate}
+		\item %
+			$h\in r(\I\boxtimesL\I')$.
+		\item %
+			For each $i'\in\I'$, $h\lollipopL i'\in r(\I)$.
+		\item %
+			For each $i\in\I$, $i\rollipopL h\in r(\I')$.
+		\item %
+			For each $i'\in\ell r(\I')$, $h\lollipopL i'\in r(\I)$.
+		\item %
+			For each $i\in\ell r(\I)$, $i\rollipopL h\in r(\I')$.
+	\end{enumerate}
+\end{lemma}
+\begin{proof}
+	By \cref{lem:pitchfork}, the first three arguments are equivalent to the following.
+	\[
+		i' \pitchfork i\rollipopL h
+		\hspace{3ex}
+		\text{for any $i\in\I$ and $i'\in\I'$.}
+	\]
+	By the small object argument,
+	this is also equivalent to
+	\[
+		i' \pitchfork i\rollipopL h
+		\hspace{3ex}
+		\text{for any $i\in\I$ and $i'\in\ell r(\I')$,}
+	\]
+	which is equivalent to $iv)$.
+	$v)$ is also equivalent to them in the same way.
+\end{proof}
+\begin{lemma}
+	$\dom\colon(\sSet/A)_\co\arr(\sSet)_\co$ preserves and lifts trivial fibrations and naive fibrations.
+\end{lemma}
+\begin{proof}
+	Observe that $\dom$ preserves and lifts both monomorphisms and anodyne extensions.
+
+	Let $f\colon S\arr T$ be a morphism in $\sSet/A$. We show that $f$ is a trivial/naive fibration if and only if $\dom(f)$ is a trivial/naive fibration.
+	The if part is easily checked considering that $\dom$ preserves monomorphisms/anodyne extensions.
+
+	Let $i$ be a monomorphism/anodyne extension in $(\sSet)_\co$ and $(u,v)\colon i \arr \dom(f)$ be a morphism in $(\sSet)_\co^\ra$.
+	It suffices to show there is a diagonal filler for this square. 
+	The morphisms towards $A$ from $f$ is followed by $(u,v)$, and this enables us to see $(u,v)$ as a
+	square in $(\sSet/A)_\co$. Moreover, its domain is a monomorphism/anodyne extension.
+	Therefore, desired diagonal filler exists if $f$ is a trivial/naive fibration in $\sSet/A$.
+\end{proof}
+\begin{lemma}
+	A left fibration between trivial fibrations is a trivial fibration.
+\end{lemma}
+\begin{proof}
+	Suppose we are given a commutative triangle
+	\[
+		\begin{tikzcd}[tri]
+			A
+			\ar[rr,"f"]
+			\ar[rd,"h"',trivfib]
+				&
+					&
+					B
+					\ar[ld,"g",trivfib]
+			\\
+				&
+				C
+					&
+		\end{tikzcd}
+	\]
+	in $\sSet$ such that $f$ is a left fibration (i.e., a naive fibration in $(\sSet)_\co$)
+	and $g$ and $h$ are trivial fibrations. By the above lemma, this lifts to another triangle
+	\[
+		\begin{tikzcd}[tri]
+			(A,h)
+			\ar[rr,"f"]
+			\ar[rd,"h"',trivfib]
+				&
+					&
+					(B,g)
+					\ar[ld,"g",trivfib]
+			\\
+				&
+				(C,\id)
+					&
+		\end{tikzcd}
+	\]
+	in $(\sSet/C)_\co$ satisfying the same condition. Since $(A,h)$ and $(B,g)$ are fibrant, $f$ is a fibration. Therefore,
+	the 2 out of 3 property for weak equivalences ensures that $f$ is a trivial fibration.
+\end{proof}
+\begin{definition}
+	Reedy trivial fibration
+\end{definition}
+\begin{lemma}
+	limit of a Reedy trivial fibration is a trivial fibration
+\end{lemma}
+\begin{proposition}
+	Levelwise left anodyne extensions are left bi-anodyne extensions.
+\end{proposition}
+
+\end{document}
+
