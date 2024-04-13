@@ -3,6 +3,7 @@
 *.blg
 *.bcf
 *.aux
+*.vim
 *.synctex.gz
 *.toc
 *.out
