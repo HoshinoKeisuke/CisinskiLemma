@@ -5,6 +5,7 @@
 \begin{document}
 \maketitle
 \cite{Cis19}
+The main objective is \Cref{prop:main}.
 \begin{notation}
 	We employ the following notations. 
 	\begin{itemize}
@@ -21,6 +22,7 @@
 			We write $\Set$ for the category of sets.
 		\item %
 			$\sSet$ is the category of simplicial sets; i.e., $\sSet=\left[\Simp^\op,\Set\right]$.
+			Every set is seen as a simplicial set by the diagonal functor $\Set\arr\sSet$.
 		\item %
 			$\bisSet$ is the category of bisimplicial sets; i.e.,  $\bisSet=\left[\Simp^\op\times\Simp^\op,\Set\right]$
 		\item %
@@ -30,16 +32,17 @@
 		\item %
 			There are functors $-\rollipop-\colon\bisSet\times\sSet^\op\arr\sSet$ and $-\lollipop-\colon\sSet^\op\times\bisSet\arr\sSet$
 			such that there exists the following family of bijections natural in $A,B\in\sSet^\op$ and $X\in\bisSet$.
-			\[
+			\begin{equation}
+				\label{eq:thebiadjunct}
 				\bisSet(A\boxtimes B,X)
 				\cong
 				\sSet(A,X\lollipop B)
 				\cong
 				\sSet(B,A\rollipop X)
-			\]
+			\end{equation}
 		\item %
 			We write $-\boxtimesL-\colon\sSet^\ra\times\sSet^\ra\arr\bisSet^\ra$ for the \textit{pushout product} or \textit{Leibniz product} with respect to $\boxtimes$;
-			given two morphisms $f\colon A\arr B$ and $g\colon C\arr D$ in $\sSet$ $f\boxtimesL g$ is the canonical morphism of the form
+			given two morphisms $f\colon A\arr B$ and $g\colon C\arr D$ in $\sSet$, the morphism $f\boxtimesL g$ is the canonical one of the form
 			$A\boxtimes D \cup_{A\boxtimes C} B\boxtimes C\arr B\boxtimes D$ whose domain is the fibred coproduct of $f\boxtimes \id_{C}$ and $\id_{A}\boxtimes g$.
 		\item %
 			We write
@@ -63,10 +66,9 @@
 		\item %
 			We write $\I_\mono$ for the canonical cellular model for $\sSet$; i.e., the set of boundary inclusions.
 		\item %
-			We write $\I_\lft$ for the generating left anodyne extensions.
+			We write $\I_\lft$ for the set of generating left anodyne extensions; i.e. the set of horn inclusions lifting initial objects.
 		\item %
-			We write $\Lambda$ for the Leibniz join $\I_\lft\boxtimesL\I_\mono$,
-			and we write $\I_\lftbi$ for $\I_\lft\boxtimesL\I_\mono\cup\I_\mono\boxtimesL\I_\lft$.
+			We write $\I_\lftbi$ for $\I_\lft\boxtimesL\I_\mono\cup\I_\mono\boxtimesL\I_\lft$.
 			The set
 			$\I_\lftbi$ is the generator for left bi-anodyne extensions.
 		\item %
@@ -114,9 +116,9 @@
 			a complete category $\one{C}$,
 		\item %
 			a weak factorisation system $(\Cof,\TFib)$
-			whose elements of are called \textit{cofibrations} and \textit{trivial fibrations} respectively,
+			whose elements are called \textit{cofibrations} and \textit{trivial fibrations} respectively,
 		\item %
-			a small category $\dgm{I}$ that is either of $\omega^\op$ or $\Lambda^2_2$,
+			a small category $\dgm{I}$ that is a discrete category or either of $\omega^\op$ or $\Lambda^2_2$,
 			and
 		\item %
 			two functors $F,G\colon\dgm{I}\arr\one{C}$.
@@ -168,6 +170,10 @@
 			$j\pitchfork i\rollipopL h$
 	\end{itemize}
 \end{lemma}
+\begin{proof}
+	Follows from \Cref{eq:thebiadjunct} and the universality of the pushout and the pullbacks defining
+	$i\boxtimesL j$, $h\lollipopL j$, and $i\rollipopL h$.
+\end{proof}
 \begin{lemma}
 	\label{lem:rIbtJ}
 	Suppose we are given two small classes $\I$ and $\J$ of morphisms in $\sSet$, and a morphism $f$ in $\bisSet$.
@@ -201,6 +207,17 @@
 	\]
 	which is equivalent to $iv)$.
 	$v)$ is also equivalent to them in the same way.
+\end{proof}
+\begin{corollary}[Lemma 5.5.6 of \cite{Cis19}]
+	\label{cor:biTrivfib}
+	A morphism $q$ in $\bisSet$ is a trivial fibration
+	if and only if
+	$q\lollipop i$ is a trivial fibration
+	for each monomorphism $i$ in $\sSet$.
+\end{corollary}
+\begin{proof}
+	$\I_\mono\boxtimesL\I_\mono$ is a cellular model for $\bisSet$ \comment{citation},
+	and this is a direct consequence of \Cref{lem:rIbtJ}, where both $\I$ and $\J$ are $\I_\mono$.
 \end{proof}
 \begin{lemma}
 	\label{lem:presliftTrivNaiveFibrations}
@@ -260,6 +277,7 @@
 	the 2 out of 3 property for weak equivalences ensures that $f$ is a trivial fibration.
 \end{proof}
 \begin{lemma}
+	\label{lem:bLeftbiFibvsTrivfib}
 	Suppose we are given a morphism $q\colon X\arr Y$ in $\bisSet$ that belongs to $r(\I_\lft\boxtimesL\I_\mono)$
 	and a monomorphism $i\colon K\arr[tail]L$ in $\sSet$.
 	$q\lollipopL i$ is a trivial fibration if $q\lollipop K$ and $q\lollipop L$ are trivial fibrations.
@@ -299,6 +317,7 @@
 	$i\lollipop \Delta^n$ is a left anodyne extension for each $n\geq 0$.
 \end{definition}
 \begin{lemma}
+	\label{lem:bLeftbiAnovsLLAno}
 	Morphisms in $\ell r(\I_\lft\boxtimesL\I_\mono)$ are levelwise left anodyne extensions.
 \end{lemma}
 \begin{proof}
@@ -347,10 +366,50 @@
 	Moreover, since the outer square comprises monomorphisms, all morphisms in this diagram are monomorphisms \comment{citation}.
 	Therefore, the resulting morphism $(i\boxtimesL j)\lollipop\Delta^n$ is a initial monomorphism, which is a left anodyne extension.
 \end{proof}
+\begin{lemma}
+	\label{lem:MonoLevmono}
+	A morphism $i$ in $\bisSet$ is a monomorphism if and only if $i\lollipop \Delta^n$ is a monomorphism for each $n\geq 0$.
+\end{lemma}
+\begin{proof}
+	By the yoneda lemma and the fact that $(-)\lollipop\Delta^m$ is a right adjoint.
+	In detail, the following are equivalent.
+	\begin{itemize}
+		\item %
+			$i$ is a monomorphism.
+		\item %
+			$\bisSet(\Delta^n\boxtimes\Delta^m,i)$ is a monomorphism in $\Set$ for each $n,m\geq 0$.
+		\item %
+			$\sSet(\Delta^n,i\lollipop\Delta^m)$ is a monomorphism in $\Set$ for each $n,m\geq 0$.
+		\item %
+			$i\lollipop\Delta^m$ is a monomorphism in $\sSet$ for each $m\geq 0$.
+		\qedhere %
+	\end{itemize}
+\end{proof}
 \begin{proposition}
+	\label{prop:main}
 	Levelwise left anodyne extensions are left bi-anodyne extensions.
 \end{proposition}
+\begin{proof}
+	Let $i\colon X\arr Y$ be a levelwise left anodyne extension.
+	\Cref{lem:MonoLevmono} shows $i$ is a monomorphism.
+	By the small object argument, we have a weak factorisation system $(\ell r (\I_\lft\boxtimesL\I_\mono),r(\I_\lft\boxtimesL\I_\mono))$,
+	and let us write $q\circ j=i$ for the factorisation of $i$ with respect to this system.
+	Since $j$ is in particular a left bi-anodyne extension and $i$ is a monomorphism, it suffices to show
+	$q$ is a trivial fibration.
+	Moreover, \Cref{cor:biTrivfib,lem:bLeftbiFibvsTrivfib} ensures that it suffices to show
+	$q\lollipop K$ is a trivial fibration for each simplicial set $K$.
 
+	Consider the case when $K=\Delta^n$ for some $n\geq0$.
+	\Cref{lem:rIbtJ} shows $q\lollipop\Delta^n$ is a left fibration and
+	\Cref{lem:bLeftbiAnovsLLAno} shows $j\lollipop\Delta^n$ is a left anodyne extension.
+	Since $i\lollipop\Delta^n$ is assumed to be a left anodyne extension,
+	$q\lollipop\Delta^n$ is a initial left fibration, which is a trivial fibration.
+
+	By Lemma 1.3.10 of \cite{Cis19}, it suffices to show that
+	the class $\{K\in\sSet\,|\,q\lollipop K\text{ is a trivial fibration }\}$ is saturated by monomorphisms.
+	Since trivial fibrations are closed under products, the class is closed under coproducts.
+	To show that it is closed under the pushouts and transfinite compositions indicated in 
+\end{proof}
 
 \bibliographystyle{halpha-abbrv}
 \bibliography{bibliography}
