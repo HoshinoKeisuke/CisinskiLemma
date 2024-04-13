@@ -84,6 +84,7 @@
 	\end{itemize}
 \end{notation}
 \begin{observation}
+	\label{obs:Leibniz}
 	$\ra$ can be seen as a (boolean) lattice, and there are
 	the meet $\land\colon\Box\arr\ra$ and the join $\lor\colon\Box\arr\ra$.
 	Given a category $\one{C}$ with pushout and pullback,
@@ -123,6 +124,7 @@
 	\end{itemize}
 \end{lemma}
 \begin{lemma}
+	\label{lem:rIbtJ}
 	Suppose we are given two small classes $\I$ and $\J$ of morphisms in $\sSet$, and a morphism $f$ in $\bisSet$.
 	The following are equivalent.
 	\begin{enumerate}
@@ -155,14 +157,54 @@
 	which is equivalent to $iv)$.
 	$v)$ is also equivalent to them in the same way.
 \end{proof}
-\begin{corollary}
+\begin{lemma}
 	Morphisms in $\ell r(\I_\lft\boxtimesL\I_\mono)$ are levelwise left anodyne extensions.
-\end{corollary}
+\end{lemma}
 \begin{proof}
-	Suppose we are given a simplicial set $K$ and a morphism $i$ in $\bisSet$.
-	Let us write $!_K\colon\emptyset\arr K$ for the unique morphism.
-	Then $i\lollipopL !_K$ is isomorphic to $i\lollipop K$ and $!_K$ is in $\ell r(\I_\mono)$ since it is a monomorphism.
-	By applying 
+	Firstly, observe that the class of levelwise left anodyne extensions
+	is described as
+	\[
+		\bigcup_{n\geq 0}
+		((-)\lollipop {\Delta^n})^{-1}(\ell r(\I_\lft))
+		\text{,}
+	\]
+	where $((-)\lollipop {\Delta^n})^{-1}$ means the inverse image of the function on morphisms
+	induced from the functor $(-)\lollipop {\Delta^n}\colon\bisSet\arr\sSet$.
+	Since $((-)\lollipop {\Delta^n})^{-1}$ preserves colimits and saturated classes are closed under joins,
+	this class is saturated.
+	Therefore, it suffices to show that morphisms in $\I_\lft\boxtimesL\I_\mono$ are levelwise left anodyne extensions.
+
+	Let $i\colon A\arr B\in\I_\lft$ and $j\colon C\arr D\in\I_\mono$.
+	By applying $(-)\lollipop {\Delta^n}$ to the diagram defining $i\boxtimesL j$, we obtain the following diagram in $\sSet$.
+	\[
+		\begin{tikzcd}
+			A\times C_n
+			\ar[r,"\id\times j_n"]
+			\ar[d,"i\times\id"']
+				&
+				A\times D_n
+				\ar[d,"x"]
+				\ar[rdd,bend left,"i\times\id"]
+					&
+			\\
+			B\times C_n
+			\ar[r]
+			\ar[rrd,bend right]
+				&
+				\cdot
+				\ar[rd,"{(i\boxtimesL j)\lollipop \Delta^n}"description]
+				\pullback[lu]
+					&
+			\\
+				&
+					&
+					B\times D_n
+		\end{tikzcd}
+	\]
+	The two morphisms named $i\times\id$ are both left anodyne extensions since left anodyne extensions are closed under finite product \comment{citation}.
+	Since $(-)\lollipop\Delta^n$ preserves pushouts, the marked square is a pushout square, and hence $x$ is also a left anodyne extension.
+	Moreover, since the outer square comprises monomorphisms, all morphisms in this diagram are monomorphisms \comment{citation}.
+	Therefore, the resulting morphism $(i\boxtimesL j)\lollipop\Delta^n$ is a initial monomorphism, which is a left anodyne extension.
 \end{proof}
 \begin{lemma}
 	$\dom\colon(\sSet/A)_\co\arr(\sSet)_\co$ preserves and lifts trivial fibrations and naive fibrations.
@@ -241,12 +283,29 @@
 		\item %
 			For each object $i\in\dgm{I}$, $\alpha_i\colon F(i)\arr G(i)$ is a trivial fibration.
 		\item %
-			Let $u\colon i\arr j$ in $\dgm{I}$ be either of $n+1\to n$ in $\omega^\op$ or 
+			Let $u\colon i\arr j$ in $\dgm{I}$ be either of $n+1\arr n$ in $\omega^\op$ or $1\arr 2$ in $\Lambda^2_2$.
+			Then the naturality square
+			\[
+				\begin{tikzcd}
+					F(i)
+					\ar[r,"F(u)"]
+					\ar[d,"\alpha_i"']
+						&
+						F(j)
+						\ar[d,"\alpha_j"]
+					\\
+					G(i)
+					\ar[r,"G(u)"']
+						&
+						G(j)
+				\end{tikzcd}
+			\]
+			is sent by $L_\land$ (see \Cref{obs:Leibniz}) to a trivial fibration.
 		\qedhere %
 	\end{itemize}
 \end{definition}
 \begin{lemma}
-	Limit of a Reedy trivial fibration is a trivial fibration
+	Limit of a Reedy trivial fibration is a trivial fibration.
 \end{lemma}
 \begin{proposition}
 	Levelwise left anodyne extensions are left bi-anodyne extensions.
@@ -258,3 +317,12 @@
 
 \end{document}
 
+\begin{corollary}
+	Morphisms in $r(\I_\lft\boxtimesL\I_\mono)$ are levelwise left fibrations.
+\end{corollary}
+\begin{proof}
+	Suppose we are given a simplicial set $K$ and a morphism $q$ in $\bisSet$.
+	Let us write $!_K\colon\emptyset\arr K$ for the unique morphism.
+	Then $q\lollipopL !_K$ is isomorphic to $q\lollipop K$ and $!_K$ is in $\ell r(\I_\mono)$ since it is a monomorphism.
+	By applying \Cref{lem:rIbtJ}, we conclude that $q\lollipop K\cong i\lollipopL !_K$ is in $r(\I_\lft)$ if $q$ is in $r(\I_\lft\boxtimesL\I_\mono)$.
+\end{proof}
