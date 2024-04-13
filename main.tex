@@ -107,10 +107,55 @@
 	The first one is the \textit{pullback product} of $\otimes$, while the secound one is the \textit{pushout product} or the \textit{Leibniz product} of $\otimes$.
 \end{observation}
 \begin{definition}
-	We say a morphism $i$ in $\bisSet$
-	is a \emph{levelwise left anodyne extension} if
-	$i\lollipop \Delta^n$ is a left anodyne extension for each $n\geq 0$.
+	\label{defn:ReedyTrivFib}
+	Suppose that we are given
+	\begin{itemize}
+		\item %
+			a complete category $\one{C}$,
+		\item %
+			a weak factorisation system $(\Cof,\TFib)$
+			whose elements of are called \textit{cofibrations} and \textit{trivial fibrations} respectively,
+		\item %
+			a small category $\dgm{I}$ that is either of $\omega^\op$ or $\Lambda^2_2$,
+			and
+		\item %
+			two functors $F,G\colon\dgm{I}\arr\one{C}$.
+	\end{itemize}
+	A natural transformation $\alpha\colon F\arr[Rightarrow]G$
+	is a
+	\emph{Reedy trivial fibration}
+	if it satisfies the followings.
+	\begin{itemize}
+		\item %
+			For each object $i\in\dgm{I}$, $\alpha_i\colon F(i)\arr G(i)$ is a trivial fibration.
+		\item %
+			Let $u\colon i\arr j$ in $\dgm{I}$ be either of $n+1\arr n$ in $\omega^\op$ or $1\arr 2$ in $\Lambda^2_2$.
+			Then the naturality square
+			\[
+				\begin{tikzcd}
+					F(i)
+					\ar[r,"F(u)"]
+					\ar[d,"\alpha_i"']
+						&
+						F(j)
+						\ar[d,"\alpha_j"]
+					\\
+					G(i)
+					\ar[r,"G(u)"']
+						&
+						G(j)
+				\end{tikzcd}
+			\]
+			is sent by $L_\land$ (see \Cref{obs:Leibniz}) to a trivial fibration.
+		\qedhere %
+	\end{itemize}
 \end{definition}
+\begin{proposition}
+	The limit of a Reedy trivial fibration is a trivial fibration.
+\end{proposition}
+\begin{proof}
+	\comment{ongoing, citation}
+\end{proof}
 \begin{lemma}
 	\label{lem:pitchfork}
 	For each morphisms $i,j$ in $\sSet$ and a morphism $h$ in $\bisSet$, the following are equivalent.
@@ -157,6 +202,102 @@
 	which is equivalent to $iv)$.
 	$v)$ is also equivalent to them in the same way.
 \end{proof}
+\begin{lemma}
+	\label{lem:presliftTrivNaiveFibrations}
+	$\dom\colon(\sSet/A)_\co\arr(\sSet)_\co$ preserves and lifts trivial fibrations and naive fibrations.
+\end{lemma}
+\begin{proof}
+	Observe that $\dom$ preserves and lifts both monomorphisms and anodyne extensions.
+
+	Let $f\colon S\arr T$ be a morphism in $\sSet/A$. We show that $f$ is a trivial/naive fibration if and only if $\dom(f)$ is a trivial/naive fibration.
+	The if part is easily checked considering that $\dom$ preserves monomorphisms/anodyne extensions.
+
+	Let $i$ be a monomorphism/anodyne extension in $(\sSet)_\co$ and $(u,v)\colon i \arr \dom(f)$ be a morphism in $\sSet^\ra$.
+	It suffices to show there is a diagonal filler for this square. 
+	The morphisms towards $A$ from $f$ is followed by $(u,v)$, and this enables us to see $(u,v)$ as a
+	square in $\sSet/A$. Moreover, its domain is a monomorphism/anodyne extension.
+	Therefore, desired diagonal filler exists if $f$ is a trivial/naive fibration in $\sSet/A$.
+\end{proof}
+\begin{lemma}
+	\label{lem:leftFibBWTrivFibs}
+	A left fibration between trivial fibrations is a trivial fibration.
+\end{lemma}
+\begin{proof}
+	Suppose we are given a commutative triangle
+	\[
+		\begin{tikzcd}[tri]
+			A
+			\ar[rr,"f"]
+			\ar[rd,"h"',trivfib]
+				&
+					&
+					B
+					\ar[ld,"g",trivfib]
+			\\
+				&
+				C
+					&
+		\end{tikzcd}
+	\]
+	in $\sSet$ such that $f$ is a left fibration (i.e., a naive fibration in $(\sSet)_\co$)
+	and $g$ and $h$ are trivial fibrations. By \Cref{lem:presliftTrivNaiveFibrations}, this lifts to another triangle
+	\[
+		\begin{tikzcd}[tri]
+			(A,h)
+			\ar[rr,"f"]
+			\ar[rd,"h"',trivfib]
+				&
+					&
+					(B,g)
+					\ar[ld,"g",trivfib]
+			\\
+				&
+				(C,\id)
+					&
+		\end{tikzcd}
+	\]
+	in $(\sSet/C)_\co$ satisfying the same condition. Since $(A,h)$ and $(B,g)$ are fibrant, $f$ is a fibration. Therefore,
+	the 2 out of 3 property for weak equivalences ensures that $f$ is a trivial fibration.
+\end{proof}
+\begin{lemma}
+	Suppose we are given a morphism $q\colon X\arr Y$ in $\bisSet$ that belongs to $r(\I_\lft\boxtimesL\I_\mono)$
+	and a monomorphism $i\colon K\arr[tail]L$ in $\sSet$.
+	$q\lollipopL i$ is a trivial fibration if $q\lollipop K$ and $q\lollipop L$ are trivial fibrations.
+\end{lemma}
+\begin{proof}
+	By \Cref{lem:rIbtJ}, $q\lollipopL i$ is a left fibration filling the following diagram.
+	\[
+		\begin{tikzcd}
+			X\lollipop L
+			\al[r,"X\lollipop i"]
+			\al[d,"q\lollipop L"']
+				&
+				X\lollipop K
+				\al[d,"x"]
+				\al[rdd,bend left,"q\lollipop K"]
+					&
+			\\
+			Y\lollipop L
+			\al[r]
+			\al[rrd,bend right]
+				&
+				\cdot
+				\al[rd,"{q\lollipopL i}"description]
+				\pullback[lu]
+					&
+			\\
+				&
+					&
+					Y\lollipop K
+		\end{tikzcd}
+	\]
+	The pullback square assures $x$ is also a trivial fibration, and this follows from \Cref{lem:leftFibBWTrivFibs}.
+\end{proof}
+\begin{definition}
+	We say a morphism $i$ in $\bisSet$
+	is a \emph{levelwise left anodyne extension} if
+	$i\lollipop \Delta^n$ is a left anodyne extension for each $n\geq 0$.
+\end{definition}
 \begin{lemma}
 	Morphisms in $\ell r(\I_\lft\boxtimesL\I_\mono)$ are levelwise left anodyne extensions.
 \end{lemma}
@@ -206,107 +347,6 @@
 	Moreover, since the outer square comprises monomorphisms, all morphisms in this diagram are monomorphisms \comment{citation}.
 	Therefore, the resulting morphism $(i\boxtimesL j)\lollipop\Delta^n$ is a initial monomorphism, which is a left anodyne extension.
 \end{proof}
-\begin{lemma}
-	$\dom\colon(\sSet/A)_\co\arr(\sSet)_\co$ preserves and lifts trivial fibrations and naive fibrations.
-\end{lemma}
-\begin{proof}
-	Observe that $\dom$ preserves and lifts both monomorphisms and anodyne extensions.
-
-	Let $f\colon S\arr T$ be a morphism in $\sSet/A$. We show that $f$ is a trivial/naive fibration if and only if $\dom(f)$ is a trivial/naive fibration.
-	The if part is easily checked considering that $\dom$ preserves monomorphisms/anodyne extensions.
-
-	Let $i$ be a monomorphism/anodyne extension in $(\sSet)_\co$ and $(u,v)\colon i \arr \dom(f)$ be a morphism in $\sSet^\ra$.
-	It suffices to show there is a diagonal filler for this square. 
-	The morphisms towards $A$ from $f$ is followed by $(u,v)$, and this enables us to see $(u,v)$ as a
-	square in $\sSet/A$. Moreover, its domain is a monomorphism/anodyne extension.
-	Therefore, desired diagonal filler exists if $f$ is a trivial/naive fibration in $\sSet/A$.
-\end{proof}
-\begin{lemma}
-	A left fibration between trivial fibrations is a trivial fibration.
-\end{lemma}
-\begin{proof}
-	Suppose we are given a commutative triangle
-	\[
-		\begin{tikzcd}[tri]
-			A
-			\ar[rr,"f"]
-			\ar[rd,"h"',trivfib]
-				&
-					&
-					B
-					\ar[ld,"g",trivfib]
-			\\
-				&
-				C
-					&
-		\end{tikzcd}
-	\]
-	in $\sSet$ such that $f$ is a left fibration (i.e., a naive fibration in $(\sSet)_\co$)
-	and $g$ and $h$ are trivial fibrations. By the above lemma, this lifts to another triangle
-	\[
-		\begin{tikzcd}[tri]
-			(A,h)
-			\ar[rr,"f"]
-			\ar[rd,"h"',trivfib]
-				&
-					&
-					(B,g)
-					\ar[ld,"g",trivfib]
-			\\
-				&
-				(C,\id)
-					&
-		\end{tikzcd}
-	\]
-	in $(\sSet/C)_\co$ satisfying the same condition. Since $(A,h)$ and $(B,g)$ are fibrant, $f$ is a fibration. Therefore,
-	the 2 out of 3 property for weak equivalences ensures that $f$ is a trivial fibration.
-\end{proof}
-\begin{definition}
-	Suppose that we are given
-	\begin{itemize}
-		\item %
-			a complete category $\one{C}$,
-		\item %
-			a weak factorisation system $(\Cof,\TFib)$
-			whose elements of are called \textit{cofibrations} and \textit{trivial fibrations} respectively,
-		\item %
-			a small category $\dgm{I}$ that is either of $\omega^\op$ or $\Lambda^2_2$,
-			and
-		\item %
-			two functors $F,G\colon\dgm{I}\arr\one{C}$.
-	\end{itemize}
-	A natural transformation $\alpha\colon F\arr[Rightarrow]G$
-	is a
-	\emph{Reedy trivial fibration}
-	if it satisfies the followings.
-	\begin{itemize}
-		\item %
-			For each object $i\in\dgm{I}$, $\alpha_i\colon F(i)\arr G(i)$ is a trivial fibration.
-		\item %
-			Let $u\colon i\arr j$ in $\dgm{I}$ be either of $n+1\arr n$ in $\omega^\op$ or $1\arr 2$ in $\Lambda^2_2$.
-			Then the naturality square
-			\[
-				\begin{tikzcd}
-					F(i)
-					\ar[r,"F(u)"]
-					\ar[d,"\alpha_i"']
-						&
-						F(j)
-						\ar[d,"\alpha_j"]
-					\\
-					G(i)
-					\ar[r,"G(u)"']
-						&
-						G(j)
-				\end{tikzcd}
-			\]
-			is sent by $L_\land$ (see \Cref{obs:Leibniz}) to a trivial fibration.
-		\qedhere %
-	\end{itemize}
-\end{definition}
-\begin{lemma}
-	Limit of a Reedy trivial fibration is a trivial fibration.
-\end{lemma}
 \begin{proposition}
 	Levelwise left anodyne extensions are left bi-anodyne extensions.
 \end{proposition}
