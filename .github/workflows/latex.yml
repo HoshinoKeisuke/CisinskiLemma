@@ -22,11 +22,6 @@ jobs:
         with:
           root_file:
             main.tex
-      - name: Push PDF file
-        run: |
-          git add --all
-          git commit -m "LaTeX compilation"
-          git push -u
       - name: Nazo PDF sousa
         uses: actions/upload-artifact@v4
         with:
