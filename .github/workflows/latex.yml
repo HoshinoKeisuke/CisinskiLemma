@@ -24,10 +24,11 @@ jobs:
             main.tex
       - name: Push PDF file
         run: |
-          git add .
+          git add --all
           git commit -m "LaTeX compilation"
-          git push origin pdf
-      - uses: actions/upload-artifact@v4
+          git push -u
+      - name: Nazo PDF sousa
+        uses: actions/upload-artifact@v4
         with:
           name: PDF
           path: main.pdf
