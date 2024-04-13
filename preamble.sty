@@ -106,6 +106,7 @@ decorations.markings,% to define the key vslash
 \declaretheorem[style=definition,qed=$\blacksquare$,sibling=theorem,name=Example]{example}
 \declaretheorem[style=definition,qed=$\blacksquare$,sibling=theorem,name=Remark]{remark}
 \declaretheorem[style=definition,qed=$\blacksquare$,sibling=theorem,name=Notation]{notation}
+\declaretheorem[style=definition,qed=$\blacksquare$,sibling=theorem,name=Observation]{observation}
 
 \crefname{theorem}{Theorem\!}{Theorems\!}
 \Crefname{theorem}{Theorem\!}{Theorems\!}
@@ -282,6 +283,7 @@ decorations.markings,% to define the key vslash
 \newcommand*{\coEMp}[1]{{\mathsf{coEM}}^{\mathsf{cp}}(#1)}
 
 \newcommand*{\dgm}[1]{\mathbb{#1}}
+\newcommand*{\zero}[1]{\mathsf{#1}}
 \newcommand*{\one}[1]{\mathbf{#1}}
 \newcommand*{\bi}[1]{{\mathcal{#1}}}
 \newcommand*{\dbl}[1]{\mathbb{#1}}
@@ -308,15 +310,17 @@ decorations.markings,% to define the key vslash
 \newcommand*{\ra}{{\Delta^1}}
 \newcommand*{\sSet}{\one{sSet}}
 \newcommand*{\bisSet}{\one{bisSet}}
-\newcommand*{\rollipop}{{\mathrel{\rotatebox[origin=c]{0}{$\multimap$}}}}
-\newcommand*{\lollipop}{{\mathrel{\raisebox{-0.115ex}{\rotatebox[origin=c]{180}{$\multimap$}}}}}
-\newcommand*{\boxtimesL}{{\mathrel{\boxtimes^{\text{\tiny{L}}}}}}
-\newcommand*{\rollipopL}{{\mathrel{\raisebox{4pt}{\tiny{L}}{\kern -.5em \rotatebox[origin=c]{0}{$\multimap$}}}}}
-\newcommand*{\lollipopL}{{\mathrel{\raisebox{-0.115ex}{\rotatebox[origin=c]{180}{$\multimap$}}{\kern -.5em \raisebox{4pt}{\tiny{L}}}}}}
-\newcommand*{\I}{\mathscr{I}}
-\newcommand*{\J}{\mathscr{J}}
-\newcommand*{\K}{\mathscr{K}}
+\newcommand*{\rollipop}{{\mathrel{\,\rotatebox[origin=c]{0}{$\multimap$}\,}}}
+\newcommand*{\lollipop}{{\mathrel{\,\raisebox{-0.115ex}{\rotatebox[origin=c]{180}{$\multimap$}}\,}}}
+\newcommand*{\boxtimesL}{{\mathrel{\,\boxtimes^{\text{\tiny{L}}}}}}
+\newcommand*{\rollipopL}{{\mathrel{\,\raisebox{4pt}{\tiny{L}}{\kern -.5em \rotatebox[origin=c]{0}{$\multimap$}}\,}}}
+\newcommand*{\lollipopL}{{\mathrel{\,\raisebox{-0.115ex}{\rotatebox[origin=c]{180}{$\multimap$}}{\kern -.5em \raisebox{4pt}{\tiny{L}}}\,}}}
+\newcommand*{\I}{\zero{I}}
+\newcommand*{\J}{\zero{J}}
+\newcommand*{\K}{\zero{K}}
 \newcommand*{\mono}{\mathsf{mono}}
 \newcommand*{\lft}{\mathsf{lft}}
 \newcommand*{\lftbi}{\mathsf{lftbi}}
+\newcommand*{\Cof}{\zero{Cof}}
+\newcommand*{\TFib}{\zero{TFib}}
 \endinput
