@@ -9,7 +9,7 @@ nnoremap <LocalLeader>eq o\begin{equation}<esc>yyplceend<esc>k
 nnoremap <LocalLeader>def o\begin{definition}<esc>yyplceend<esc>k
 nnoremap <LocalLeader>[ o\[\]<esc>hi<Cr><esc>kl
 nnoremap <LocalLeader>esp o\begin{equation}<esc>yyplceend<esc>ko\begin{split}<esc>yyplceend<esc>Vk<
-nnoremap <LocalLeader>item o\begin{itemize}<esc>yyplceend<esc>ko\item%<esc>
+nnoremap <LocalLeader>item o\begin{itemize}<esc>yyplceend<esc>ko\item %<esc>
 nnoremap <LocalLeader>enum o\begin{enumerate}<esc>yyplceend<esc>ko\item<esc>
 nnoremap <LocalLeader>bmat o\begin{bmatrix}<esc>yyplceend<esc>k
 nnoremap <LocalLeader>split o\begin{split}<esc>yyplceend<esc>k
