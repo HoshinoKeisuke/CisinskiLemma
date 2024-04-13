@@ -10,7 +10,6 @@
 *.pdf
 *.dvi
 *.fls
-*.vim
 *.xml
 *.bbl
 pending.tex
