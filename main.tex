@@ -157,6 +157,12 @@
 \begin{corollary}
 	Morphisms in $\ell r(\I_\lft\boxtimesL\I_\mono)$ are levelwise left anodyne extensions.
 \end{corollary}
+\begin{proof}
+	Suppose we are given a simplicial set $K$ and a morphism $i$ in $\bisSet$.
+	Let us write $!_K\colon\emptyset\arr K$ for the unique morphism.
+	Then $i\lollipopL !_K$ is isomorphic to $i\lollipop K$ and $!_K$ is in $\ell r(\I_\mono)$ since it is a monomorphism.
+	By applying 
+\end{proof}
 \begin{lemma}
 	$\dom\colon(\sSet/A)_\co\arr(\sSet)_\co$ preserves and lifts trivial fibrations and naive fibrations.
 \end{lemma}
@@ -166,10 +172,10 @@
 	Let $f\colon S\arr T$ be a morphism in $\sSet/A$. We show that $f$ is a trivial/naive fibration if and only if $\dom(f)$ is a trivial/naive fibration.
 	The if part is easily checked considering that $\dom$ preserves monomorphisms/anodyne extensions.
 
-	Let $i$ be a monomorphism/anodyne extension in $(\sSet)_\co$ and $(u,v)\colon i \arr \dom(f)$ be a morphism in $(\sSet)_\co^\ra$.
+	Let $i$ be a monomorphism/anodyne extension in $(\sSet)_\co$ and $(u,v)\colon i \arr \dom(f)$ be a morphism in $\sSet^\ra$.
 	It suffices to show there is a diagonal filler for this square. 
 	The morphisms towards $A$ from $f$ is followed by $(u,v)$, and this enables us to see $(u,v)$ as a
-	square in $(\sSet/A)_\co$. Moreover, its domain is a monomorphism/anodyne extension.
+	square in $\sSet/A$. Moreover, its domain is a monomorphism/anodyne extension.
 	Therefore, desired diagonal filler exists if $f$ is a trivial/naive fibration in $\sSet/A$.
 \end{proof}
 \begin{lemma}
@@ -218,7 +224,7 @@
 		\item %
 			a complete category $\one{C}$,
 		\item %
-			a weak factorisatoin system $(\Cof,\TFib)$
+			a weak factorisation system $(\Cof,\TFib)$
 			whose elements of are called \textit{cofibrations} and \textit{trivial fibrations} respectively,
 		\item %
 			a small category $\dgm{I}$ that is either of $\omega^\op$ or $\Lambda^2_2$,
