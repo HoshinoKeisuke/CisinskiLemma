@@ -1,3 +1,4 @@
 main.aux
 *.vim
 *.blg
+*.synctex.gz
