@@ -7,7 +7,7 @@
 See \cite{Cis19} and the question\footnote{\tiny \url{https://mathoverflow.net/questions/467753/on-lemma-5-5-16-of-cisinskis-higher-categories-and-homotopical-algebra}}
 in mathoverflow.
 The main objective is \Cref{prop:main}, which implies \cite[Lemma5.5.16]{Cis19}.
-\begin{notation}
+\begin{notation}[basics]
 	We employ the following notations. 
 	\begin{itemize}
 		\item %
@@ -15,10 +15,11 @@ The main objective is \Cref{prop:main}, which implies \cite[Lemma5.5.16]{Cis19}.
 			we write $\one{C}(A,B)$ for the homset.
 		\item %
 			$\Simp$ is the category of simplices.
-			We write $\Delta^n$ for the $n$-simplex, which is also seen as a category. 
+			We write $\Delta^n$ for the $n$-simplex. 
 		\item %
 			We write $\one{C}^\ra$ for the arrow category of $\one{C}$.
-			We write $\Box$ for $\ra\times\ra$.
+			The category $\ra$ is the walking arrow (the $2$-element chain),
+			and we write $\Box$ for $\ra\times\ra$.
 		\item %
 			We write $\Set$ for the category of sets.
 		\item %
@@ -26,65 +27,158 @@ The main objective is \Cref{prop:main}, which implies \cite[Lemma5.5.16]{Cis19}.
 			Every set is seen as a simplicial set by the diagonal functor $\Set\arr\sSet$.
 		\item %
 			$\bisSet$ is the category of bisimplicial sets; i.e.,  $\bisSet=\left[\Simp^\op\times\Simp^\op,\Set\right]$
-		\item %
-			For each small category $\dgm{A}$, we write $\yo\colon\dgm{A}\arr\left[\dgm{A}^\op,\Set\right]$ for the yoneda embedding.
-		\item %
-			We write $-\boxtimes-\colon\sSet\times\sSet\arr\bisSet$ for the nerve functor of $\yo\times\yo\colon\Simp^\op\times\Simp^\op\arr\sSet\times\sSet$.
-		\item %
-			There are functors $-\rollipop-\colon\sSet^\op\times\bisSet\arr\sSet$ and $-\lollipop-\colon\bisSet\times\sSet^\op\arr\sSet$
-			such that there exists the following family of bijections natural in $A,B\in\sSet^\op$ and $X\in\bisSet$.
-			\begin{equation}
-				\label{eq:thebiadjunct}
-				\bisSet(A\boxtimes B,X)
-				\cong
-				\sSet(A,X\lollipop B)
-				\cong
-				\sSet(B,A\rollipop X)
-			\end{equation}
-		\item %
-			We write $-\boxtimesL-\colon\sSet^\ra\times\sSet^\ra\arr\bisSet^\ra$ for the \textit{pushout product} or \textit{Leibniz product} with respect to $\boxtimes$;
-			given two morphisms $f\colon A\arr B$ and $g\colon C\arr D$ in $\sSet$, the morphism $f\boxtimesL g$ is the canonical one of the form
-			$A\boxtimes D \cup_{A\boxtimes C} B\boxtimes C\arr B\boxtimes D$ whose domain is the fibred coproduct of $f\boxtimes \id_{C}$ and $\id_{A}\boxtimes g$.
-		\item %
-			We write
-			$-\rollipopL-\colon\sSet^{\ra,\op}\times\bisSet^\ra\arr\sSet^\ra$
-			and
-			$-\lollipopL-\colon\bisSet^\ra\times\sSet^{\ra,\op}\arr\sSet^\ra$
-			for the \textit{pullback product} for $\rollipop$ and $\lollipop$ respectively.
-			Therefore, given a morphism $f\colon A \arr B$ in $\sSet$ and a morphism $h\colon X\arr Y$ in $\bisSet$,
-			$f\rollipopL h$ is the canonical morphism towards the fibred product of $f\rollipop \id_Y$ and $\id_A\rollipop h$.
+		\qedhere %
+	\end{itemize}
+\end{notation}
+\begin{definition}
+		We write $-\boxtimes-\colon\sSet\times\sSet\arr\bisSet$ for the nerve functor of $\yo\times\yo\colon\Simp\times\Simp\arr\sSet\times\sSet$,
+		where $\yo\colon\Simp\arr\sSet$ is the yoneda embedding.
+
+		There are functors $-\rollipop-\colon\sSet^\op\times\bisSet\arr\sSet$ and $-\lollipop-\colon\bisSet\times\sSet^\op\arr\sSet$
+		such that there exists the following family of bijections
+		\begin{equation}
+			\label{eq:thebiadjunct}
+			\bisSet(A\boxtimes B,X)
+			\cong
+			\sSet(A,X\lollipop B)
+			\cong
+			\sSet(B,A\rollipop X)
+		\end{equation}
+		that is natural in $A,B\in\sSet^\op$ and $X\in\bisSet$.
+\end{definition}
+\begin{definition}
+	\label{defn:LmeetLjoin}
+	$\ra$ can be seen as a lattice so that there are
+	the meet $\land\colon\Box\arr\ra$ and the join $\lor\colon\Box\arr\ra$.
+	Given a category $\one{C}$ with pushout and pullback,
+	we obtain $L_\land\colon\one{C}^\Box\arr\one{C}^\ra$ as the right Kan extension along the meet $\land$,
+	while we have $L_\lor\colon\one{C}^\Box\arr\one{C}^\ra$ as the left Kan extension along the join $\lor$.
+	In detail, $L_{\land}(\alpha)$ is the unique morphism making the diagram on the left below,
+	where $\alpha$ is the outer square and the inner square is a pullback square.
+	Dually, $L_{\lor}(\alpha)$ is the canonical morphism described on the right.
+	\[
+		\begin{tikzcd}[column sep=5mm, row sep=5mm]
+			A
+			\ar[rdd,bend right]
+			\ar[rrd,bend left]
+			\ar[rd,"L_\land(\alpha)"description]
+				&
+					&
+			\\
+				&
+				\cdot
+				\ar[r]
+				\ar[d]
+				\pullback[rd]
+					&
+					B
+					\ar[d]
+			\\
+				&
+				X
+				\ar[r]
+					&
+					Y
+		\end{tikzcd}
+		\hspace{5ex}
+		\begin{tikzcd}[column sep=5mm, row sep=5mm]
+			A
+			\ar[r]
+			\ar[d]
+				&
+				B
+				\ar[d]
+				\ar[rdd,bend left]
+					&
+			\\
+			X
+			\ar[r]
+			\ar[rrd,bend right]
+				&
+				\cdot
+				\ar[rd,"L_\lor(\alpha)"{description,inner sep=.1em}]
+				\pullbackR[lu]
+					&
+			\\
+				&
+					&
+					Y
+		\end{tikzcd}
+	\]
+\end{definition}
+\begin{definition}
+	Suppose we are given a functor $\otimes\colon\one{A}\times\one{B}\arr\one{C}$.
+	Consider the composite
+	\[
+		\ra\times\ra\times\one{A}^\ra\times\one{B}^\ra
+		\arr"\text{evaluation}"[][6]
+		\one{A}\times\one{B}
+		\arr"\otimes"
+		\one{C}\text{,}
+	\]
+	where the former is the canonical evaluation functor that sends $(i,j,X,Y)$ to $(X(i),Y(j))$.
+	The currying of this composite gives a functor $\bar\otimes\colon\one{A}^\ra\times\one{B}^\ra\arr\one{C}^\Box$.
+
+	Now we have two functors $L_\land\circ\bar\otimes$ and $L_\lor\circ\bar\otimes$ of the form $\one{A}^\ra\times\one{B}^\ra\arr\one{C}^\ra$.
+	The first one is called the \textit{pullback product} with respect to $\otimes$,
+	while the second one is called the \textit{pushout product} or the \textit{Leibniz product} with respect to $\otimes$.
+\end{definition}
+\begin{definition}
+	We write $-\boxtimesL-\colon\sSet^\ra\times\sSet^\ra\arr\bisSet^\ra$ for the \textit{pushout product} with respect to $\boxtimes$;
+	given two morphisms $f\colon A\arr B$ and $g\colon C\arr D$ in $\sSet$, the morphism $f\boxtimesL g$ is the canonical one of the form
+	$A\boxtimes D \cup_{A\boxtimes C} B\boxtimes C\arr B\boxtimes D$ whose domain is the fibred coproduct of $f\boxtimes \id_{C}$ and $\id_{A}\boxtimes g$.
+\end{definition}
+\begin{definition}
+	We write
+	$-\rollipopL-\colon\sSet^{\ra,\op}\times\bisSet^\ra\arr\sSet^\ra$
+	and
+	$-\lollipopL-\colon\bisSet^\ra\times\sSet^{\ra,\op}\arr\sSet^\ra$
+	for the pullback product for $\rollipop$ and $\lollipop$ respectively.
+	Therefore, given a morphism $f\colon A \arr B$ in $\sSet$ and a morphism $h\colon X\arr Y$ in $\bisSet$,
+	the morphism
+	$f\rollipopL h$ is the canonical one towards the fibred product of $f\rollipop \id_Y$ and $\id_A\rollipop h$.
+\end{definition}
+\begin{notation}[class of morphisms]
+	We employ the following notations.
+	\begin{itemize}
 		\item %
 			Let $i$ and $k$ be morphisms.
 			We write $i\pitchfork k$ if $i$ has left lifting property to $k$, or equivalently,
 			$k$ has right lifting property to $i$.
-		\item
+		\item %
 			Given a class of morphisms $\I$,
 			we write $\ell(\I)$ for the class of morphisms that have left lifting property to those in $\I$.
 			Dually, we write $r(\I)$ for the class of morphisms that have right lifting property to those in $\I$.
 		\item %
 			Given two classes of morphisms $\I$ and $\K$ in $\sSet$,
 			we obtain a class of morphisms $\I\boxtimesL\K=\{ i\boxtimesL k\,|\,i\in\I,\ k\in\K \}$.
+			Similarly, we define $\J\lollipopL\I$ and $\I\rollipopL\J$ for a class $\J$ of morphisms in $\bisSet$.
 		\item %
 			We write $\I_\mono$ for the canonical cellular model for $\sSet$; i.e., the set of boundary inclusions.
 		\item %
 			We write $\I_\lft$ for the set of generating left anodyne extensions; i.e. the set of horn inclusions lifting initial objects.
-		\item %
-			We write $\I_\lftbi$ for $\I_\lft\boxtimesL\I_\mono\cup\I_\mono\boxtimesL\I_\lft$.
-			The set
-			$\I_\lftbi$ is the generator for left bi-anodyne extensions.
+		\qedhere %
+	\end{itemize}
+\end{notation}
+\begin{fact}
+	The set
+	$\I_\lft\boxtimesL\I_\mono\cup\I_\mono\boxtimesL\I_\lft$
+	is the generator for left bi-anodyne extensions.
+\end{fact}
+\begin{notation}[Homotopical structures]
+	In this note, the following homotopical structures are considered.
+	\begin{itemize}
 		\item %
 			For each simplicial set $A$,
 			we write $(\sSet/A)_\co$ for the slice category equipped with the homotopical structure defined for the covariant model structure.
 		\item %
 			For each bisimplicial set $X$,
 			we write $(\bisSet/X)_\co$ for the slice category equipped with the homotopical structure for the bicovariant model structure.
-		\item %
-			We write $\omega$ for the least infinite ordinal seen as a category by its order.
-		\item %
-			We regard the horn $\Lambda^2_2$ as a subcategory of $\Delta^2$.
 		\qedhere %
 	\end{itemize}
 \end{notation}
+We write $\omega$ for the least infinite ordinal seen as a category by its order.
+The horn $\Lambda^2_2$ is seen as a category; i.e., $\Lambda^2_2$ is the walking cospan.
 \section{On classes of morphisms in \texorpdfstring{$\bisSet$}{bisSet}}
 \begin{lemma}
 	\label{lem:pitchfork}
@@ -104,7 +198,7 @@ The main objective is \Cref{prop:main}, which implies \cite[Lemma5.5.16]{Cis19}.
 \end{proof}
 \begin{lemma}
 	\label{lem:rIbtJ}
-	Suppose we are given two small classes $\I$ and $\J$ of morphisms in $\sSet$, and a morphism $f$ in $\bisSet$.
+	Suppose we are given two small classes $\I$ and $\J$ of morphisms in $\sSet$, and a morphism $h$ in $\bisSet$.
 	The following are equivalent.
 	\begin{enumerate}
 		\item %
@@ -240,29 +334,6 @@ The main objective is \Cref{prop:main}, which implies \cite[Lemma5.5.16]{Cis19}.
 	The pullback square assures $x$ is also a trivial fibration, and this follows from \Cref{lem:leftFibBWTrivFibs}.
 \end{proof}
 \section{Insights from Reedy category theory}
-\begin{observation}
-	\label{obs:Leibniz}
-	$\ra$ can be seen as a lattice so that there are
-	the meet $\land\colon\Box\arr\ra$ and the join $\lor\colon\Box\arr\ra$.
-	Given a category $\one{C}$ with pushout and pullback,
-	we obtain $L_\land\colon\one{C}^\Box\arr\one{C}^\ra$ as the right Kan extension along the meet $\land$,
-	while we have $L_\lor\colon\one{C}^\Box\arr\one{C}^\ra$ as the left Kan extension along the join $\lor$.
-
-	On the other hand, suppose we are given a functor $\otimes\colon\one{A}\times\one{B}\arr\one{C}$.
-	Consider the composite
-	\[
-		\ra\times\ra\times\one{A}^\ra\times\one{B}^\ra
-		\arr"\text{evaluation}"[][6]
-		\one{A}\times\one{B}
-		\arr"\otimes"
-		\one{C}\text{,}
-	\]
-	where the former is the canonical evaluation functor that sends $(i,j,X,Y)$ to $(X(i),Y(j))$.
-	The currying of this composite gives a functor $\bar\otimes\colon\one{A}^\ra\times\one{B}^\ra\arr\one{C}^\Box$.
-
-	Now we have two functors $L_\land\circ\bar\otimes$ and $L_\lor\circ\bar\otimes$ of the form $\one{A}^\ra\times\one{B}^\ra\arr\one{C}^\ra$.
-	The first one is the \textit{pullback product} of $\otimes$, while the second one is the \textit{pushout product} or the \textit{Leibniz product} of $\otimes$.
-\end{observation}
 \begin{definition}
 	\label{defn:SatMono}
 	Suppose that we are given a cocomplete category $\one{C}$ and a class $S$ of objects in $\one{C}$.
@@ -326,7 +397,7 @@ The main objective is \Cref{prop:main}, which implies \cite[Lemma5.5.16]{Cis19}.
 						G(j)
 				\end{tikzcd}
 			\]
-			is sent by $L_\land$ (see \Cref{obs:Leibniz}) to a trivial fibration.
+			is sent by $L_\land$ (see \Cref{defn:LmeetLjoin}) to a trivial fibration.
 		\qedhere %
 	\end{itemize}
 \end{definition}
@@ -567,7 +638,8 @@ The main objective is \Cref{prop:main}, which implies \cite[Lemma5.5.16]{Cis19}.
 		q\lollipop F(-)\colon Z\lollipop F(-)\arr[Rightarrow]Y\lollipop F(-)\colon \dI\arr\sSet
 	\end{equation}
 	is a Reedy trivial fibration.
-	Now considering \Cref{obs:Leibniz}, one can check that \Cref{prop:bLeftbiFibvsTrivfib} shows that
+	Now by the definition of the pullback product $\lollipopL$,
+	one can check that \Cref{prop:bLeftbiFibvsTrivfib} shows that
 	the naturality square for the transformation $q\lollipop -$ at a monomorphism between objects in $S$
 	is sent by $L_\land$ to a trivial fibration.
 	This shows \Cref{eq:DesReedytfib} is a Reedy trivial fibration, which completes the proof.
@@ -587,3 +659,78 @@ The main objective is \Cref{prop:main}, which implies \cite[Lemma5.5.16]{Cis19}.
 	Then $q\lollipopL !_K$ is isomorphic to $q\lollipop K$ and $!_K$ is in $\ell r(\I_\mono)$ since it is a monomorphism.
 	By applying \Cref{lem:rIbtJ}, we conclude that $q\lollipop K\cong i\lollipopL !_K$ is in $r(\I_\lft)$ if $q$ is in $r(\I_\lft\boxtimesL\I_\mono)$.
 \end{proof}
+\begin{observation}
+	\label{obs:Leibniz}
+	The walking arrow $\ra$ can be seen as a (boolean) lattice so that there are
+	the meet $\land\colon\Box=\ra\times\ra\arr\ra$ and the join $\lor\colon\Box\arr\ra$.
+	Given a category $\one{C}$ with pushout and pullback,
+	we obtain $L_\land\colon\one{C}^\Box\arr\one{C}^\ra$ as the right Kan extension along the meet $\land$,
+	while we have $L_\lor\colon\one{C}^\Box\arr\one{C}^\ra$ as the left Kan extension along the join $\lor$.
+	In detail, $L_{\land}(\alpha)$ is the unique morphism making the diagram on the left below,
+	where $\alpha$ is the outer square and the inner square is the pullback square.
+	Dually, $L_{\lor}(\alpha)$ is the canonical morphism described on the right.
+	\[
+		\begin{tikzcd}[column sep=5mm, row sep=5mm]
+			A
+			\ar[rdd,bend right]
+			\ar[rrd,bend left]
+			\ar[rd,"L_\land(\alpha)"description]
+				&
+					&
+			\\
+				&
+				\cdot
+				\ar[r]
+				\ar[d]
+				\pullback[rd]
+					&
+					B
+					\ar[d]
+			\\
+				&
+				X
+				\ar[r]
+					&
+					Y
+		\end{tikzcd}
+		\hspace{5ex}
+		\begin{tikzcd}[column sep=5mm, row sep=5mm]
+			A
+			\ar[r]
+			\ar[d]
+				&
+				B
+				\ar[d]
+				\ar[rdd,bend left]
+					&
+			\\
+			X
+			\ar[r]
+			\ar[rrd,bend right]
+				&
+				\cdot
+				\ar[rd,"L_\lor(\alpha)"{description,inner sep=.1em}]
+				\pullbackR[lu]
+					&
+			\\
+				&
+					&
+					Y
+		\end{tikzcd}
+	\]
+
+	On the other hand, suppose we are given a functor $\otimes\colon\one{A}\times\one{B}\arr\one{C}$.
+	Consider the composite
+	\[
+		\ra\times\ra\times\one{A}^\ra\times\one{B}^\ra
+		\arr"\text{evaluation}"[][6]
+		\one{A}\times\one{B}
+		\arr"\otimes"
+		\one{C}\text{,}
+	\]
+	where the former is the canonical evaluation functor that sends $(i,j,X,Y)$ to $(X(i),Y(j))$.
+	The currying of this composite gives a functor $\bar\otimes\colon\one{A}^\ra\times\one{B}^\ra\arr\one{C}^\Box$.
+
+	Now we have two functors $L_\land\circ\bar\otimes$ and $L_\lor\circ\bar\otimes$ of the form $\one{A}^\ra\times\one{B}^\ra\arr\one{C}^\ra$.
+	The first one is the \textit{pullback product} of $\otimes$, while the second one is the \textit{pushout product} or the \textit{Leibniz product} of $\otimes$.
+\end{observation}

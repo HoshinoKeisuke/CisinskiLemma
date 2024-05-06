@@ -20,6 +20,7 @@ stmaryrd,%
 array,%
 pict2e,
 }
+\RequirePackage[outline]{contour} % \ra
 \RequirePackage[nolist,smaller]{acronym}
 \RequirePackage[a4paper, margin=2cm]{%
 geometry%
@@ -64,7 +65,9 @@ decorations.markings,% to define the key vslash
 \date{\today}
 \author{Keisuke Hoshino}
 \email{hoshinok@kurims.kyoto-u.ac.jp}
-\thanks{%
+\thanks{This note is based on
+	a personal communication with Prof.\ D.-C.\ Cisinski and
+	a personal seminar with Soichiro Fujii and Yuki Maehara.%
 }
 % I am particularly grateful for the feedback offered by Dr.\ S.\ Fujii.}
 %	The first author is partially supported by JSPS Research Fellowship for Young Scientists.
@@ -183,6 +186,9 @@ decorations.markings,% to define the key vslash
 }
 \newcommand*{\pullback}[1][rd]{%
     \doublecell[#1, "\lrcorner"{description, near start, inner sep=0mm}]{}
+}
+\newcommand*{\pullbackR}[1][rd]{%
+    \doublecell[#1, "\ulcorner"{description, near start, inner sep=0mm}]{}
 }
 % sar in tikzcd
 \newcommand*{\sar}[1][]{%
@@ -307,7 +313,7 @@ decorations.markings,% to define the key vslash
 }
 \makeatother
 %----- abbreviations (additional) -----------------------------------------------
-\newcommand*{\ra}{{\Delta^1}}
+\newcommand*{\ra}{{\left[1\right]}}
 \newcommand*{\sSet}{\one{sSet}}
 \newcommand*{\bisSet}{\one{bisSet}}
 \newcommand*{\rollipop}{{\mathrel{\,\rotatebox[origin=c]{0}{$\multimap$}\,}}}
